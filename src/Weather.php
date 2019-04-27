@@ -29,12 +29,17 @@ class Weather
 
     /**
      * $city - 城市名 / 高德地址位置 adcode，比如：“深圳” 或者（adcode：440300）
-     * $type - 返回内容类型(base:返回实况天气 / all:返回预报天气)
+     * $type - 返回内容类型(live:返回实况天气 / forecast:返回预报天气)
      * $format - 输出的数据格式， 默认是 json 格式, 当设置为 xml 时, 输出的为 xml 格式的数据
      */
-    public function getWeather($city, string $type = 'base', string $format = 'json')
+    public function getWeather($city, $type = 'live', $format = 'json')
     {
         $url = 'https://restapi.amap.com/v3/weather/weatherInfo';
+
+        $types = [
+            'live' => 'base',
+            'forecast' => 'all',
+        ];
 
         // 1. 对 `$format` 与 `$type` 参数进行检查，不在范围内的抛出异常。
 
@@ -42,8 +47,8 @@ class Weather
             throw new InvalidArgumentException('Invalid response format: ' . $format);
         }
 
-        if (!\in_array(\strtolower($type), ['base', 'all'])) {
-            throw new InvalidArgumentException('Invalid type value(base/all): ' . $type);
+        if (!\array_key_exists(\strtolower($type), $types)) {
+            throw new InvalidArgumentException('Invalid type value(live/forecast): ' . $type);
         }
         
 
@@ -53,7 +58,7 @@ class Weather
             'key' => $this->key,
             'city' => $city,
             'output' => $format,
-            'extensions' => $type,
+            'extensions' => $types[$type],
         ]);
 
         try {
@@ -72,5 +77,17 @@ class Weather
             throw new HttpException($e->getMessage(), $e->getCode(), $e);
         }
         
+    }
+
+    public function getLiveWeather($city, $format = 'json')
+    {
+        // 获取实时天气
+        return $this->getWeather($city, 'live', $format);
+    }
+
+    public function getForecastsWeather($city, $format = 'json')
+    {
+        // 获取天气预报
+        return $this->getWeather($city, 'forecast', $format);
     }
 }

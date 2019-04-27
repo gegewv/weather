@@ -28,6 +28,12 @@ $weather = new Weather($key);
 $response = $weather->getWeather('深圳');
 ```
 
+或
+
+```
+$response = $w->getLiveWeather('深圳');
+```
+
 示例：
 
 ```
@@ -55,7 +61,13 @@ $response = $weather->getWeather('深圳');
 ## 获取近期天气预报
 
 ```
-$response = $weather->getWeather('深圳', 'all');
+$response = $weather->getWeather('深圳', 'forecast');
+```
+
+或
+
+```
+$response = $w->getForecastsWeather('深圳');
 ```
 
 示例：
@@ -131,7 +143,7 @@ $response = $weather->getWeather('深圳', 'all');
 第三个参数为返回值类型，可选 `json` 与 `xml`，默认 `json`：
 
 ```
-$response = $weather->getWeather('深圳', 'all', 'xml');
+$response = $weather->getWeather('深圳', 'forecast', 'xml');
 ```
 
 示例：
@@ -161,11 +173,11 @@ $response = $weather->getWeather('深圳', 'all', 'xml');
 ## 参数说明
 
 ```
-array|string getWeather(string $city, string $type = 'base', string $format = 'json')
+array|string getWeather(string $city, string $type = 'live', string $format = 'json')
 ```
 
 - `$city` - 城市名，比如：“深圳”；
-- `$type` - 返回内容类型：`base` : 返回实况天气 / `all` : 返回预报天气；
+- `$type` - 返回内容类型：`live` : 返回实况天气 / `forecast` : 返回预报天气；
 - `$format` - 输出的数据格式，默认为 `json` 格式，当 `output` 设置为 “`xml`” 时，输出的为 `XML` 格式的数据。
 
 ## 在 Laravel 中使用
