@@ -1,0 +1,28 @@
+{
+    "name": "gegewv/weather",
+    "description": "A Weather SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gegewv",
+            "email": "gegewv@outlook.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "phpunit/phpunit": "^7.0",
+        "mockery/mockery": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gegewv\\Weather\\": "./src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gegewv\\Weather\\ServiceProvider"
+            ]
+        }
+    }
+}
