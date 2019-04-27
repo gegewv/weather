@@ -1,6 +1,6 @@
 # Weather
 
-[![Build Status](https://travis-ci.org/gegewv/weather.svg?branch=master)](https://travis-ci.org/gegewv/weather)
+[![Build Status](https://travis-ci.org/gegewv/weather.svg?branch=master)](https://travis-ci.org/gegewv/weather) [![StyleCI](https://github.styleci.io/repos/183748603/shield?branch=master)](https://github.styleci.io/repos/183748603)
 
 基于 高德开放平台 的 PHP 天气信息组件。
 
