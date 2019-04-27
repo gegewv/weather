@@ -1,5 +1,7 @@
 # Weather
 
+[![Build Status](https://travis-ci.org/gegewv/weather.svg?branch=master)](https://travis-ci.org/gegewv/weather)
+
 基于 高德开放平台 的 PHP 天气信息组件。
 
 ## 安装
